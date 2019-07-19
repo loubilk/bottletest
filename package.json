@@ -1,0 +1,22 @@
+{
+  "name": "bottletest",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "browser-sync": "^2.26.7",
+    "concurrently": "^4.1.1",
+    "node-sass": "^4.12.0"
+  },
+  "scripts": {
+    "css-compile": "node-sass static/scss -o static/css",
+    "css-watch": "node-sass static/scss -o static/css --watch",
+    "browser-sync": "browser-sync start --files \"static/css/*.css, static/js/*.js, *.py, views/*.tpl\" --proxy 127.0.0.1:8080 --reload-delay=300 --reload-debounce=500",
+    "start": "concurrently --kill-others \"npm run css-watch\" \"python3 -u ajax_bottle.py\" \"npm run browser-sync\" "
+  }
+}
